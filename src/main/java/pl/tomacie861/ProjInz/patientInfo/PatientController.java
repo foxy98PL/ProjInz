@@ -24,7 +24,7 @@ public class PatientController {
 private PatientService service;
 
 	
-	@GetMapping("/getPatient")
+	@GetMapping("/Patient")
  public	ResponseEntity<SinglePatientResponse> getResponse(@RequestParam(required=true) Long pesel,@RequestParam(required=true) Long docId){
 	
 		/**
@@ -42,7 +42,7 @@ private PatientService service;
 		
 		return new ResponseEntity<>(response,HttpStatus.OK);
 	}
-	@GetMapping("/getPatientsList")
+	@GetMapping("/PatientsList")
 	public ResponseEntity<PatientsResponse> getPatientsList(@RequestParam(required=true) Long docId){
 		if(docId == null) {
 			throw new BadRequestException("Brak numeru pesel/docId w żądaniu");

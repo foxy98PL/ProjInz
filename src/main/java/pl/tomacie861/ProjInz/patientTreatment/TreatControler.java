@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.tomacie861.ProjInz.BadRequestException;
+import pl.tomacie861.ProjInz.NotFoundException;
+
 @RestController
 @RequestMapping("projinz/")
 public class TreatControler {
@@ -18,10 +21,17 @@ public class TreatControler {
 private	TreatService service;
 	
 	@GetMapping("/PatientTreatment")
-	public ResponseEntity<SingleResponse> getResponse(@RequestParam(required=true) Long pesel){
-		TreatModel model = this.service.selectPatientTreatment(pesel);
-		SingleResponse response = new SingleResponse(model);
-		response.setPatientTreat(model);
+	public ResponseEntity<TreatResponse> getResponse(@RequestParam(required=true) Long pesel,@RequestParam(required=true) Long docId){
+		if(pesel == null || docId == null) {
+			throw new BadRequestException("Parametr pesel/docId jest nie wpisany");
+		}
+		
+		List<TreatModel> model = this.service.selectAllPatientTreatments(pesel,docId);
+		if(model.isEmpty()) {
+			throw new NotFoundException("Brak pacjentów");
+		}
+		TreatResponse response = new TreatResponse(model);
+		response.setPatientTreatment(model);
 		
 		return new ResponseEntity<>(response,HttpStatus.OK);
 		

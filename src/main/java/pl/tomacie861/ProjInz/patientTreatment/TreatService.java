@@ -13,13 +13,8 @@ public class TreatService {
 	@Autowired
 	TreatRepository repo;
 	
-	public TreatModel selectPatientTreatment(Long pesel) {
-		return repo.selectPatientSingleTreatment(pesel);
-	}
 	
-	
-	
-	public List<TreatModel> selectAllPatientTreatments(Long pesel) {
-		return repo.selectPatientTreatment(pesel);
+	public List<TreatModel> selectAllPatientTreatments(Long pesel,Long docid) {
+		return repo.selectPatientTreatment(pesel,docid);
 	}
 }
