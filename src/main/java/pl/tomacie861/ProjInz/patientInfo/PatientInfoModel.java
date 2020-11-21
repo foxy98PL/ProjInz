@@ -15,6 +15,7 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "projinz.basicinformation")
+
 public class PatientInfoModel {
 
 @Id
