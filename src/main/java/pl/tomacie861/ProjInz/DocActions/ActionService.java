@@ -1,5 +1,7 @@
 package pl.tomacie861.ProjInz.DocActions;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,10 @@ public class ActionService {
 
 	public void setStatus0(Long docid) {
 		repo.setStatus0(docid);
+	}
+	
+	public List<ActionModel> getDoctor() {
+	return repo.getDoctor();
 	}
 
 }

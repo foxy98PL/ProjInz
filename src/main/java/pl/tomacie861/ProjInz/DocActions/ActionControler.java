@@ -1,5 +1,9 @@
 package pl.tomacie861.ProjInz.DocActions;
 
+
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.tomacie861.ProjInz.BadRequestException;
+import pl.tomacie861.ProjInz.NotFoundException;
 import pl.tomacie861.ProjInz.OkRequest;
 
 @RestController
@@ -32,5 +38,20 @@ public class ActionControler {
 	public void setStatus0(@RequestParam(required=true) Long docId) {
 	this.service.setStatus0(docId);
 	
+	}
+	@GetMapping("/doctor")
+	public ResponseEntity<List<ActionModel>> getDoctor(){
+		
+		
+		List<ActionModel> model = this.service.getDoctor();
+		
+		if(model == null) {
+			throw new NotFoundException("Brak doktora w bazie danych");
+		}
+		
+		return new ResponseEntity<>(model,HttpStatus.OK);
+		
+		
+		
 	}
 }

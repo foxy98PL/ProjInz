@@ -10,30 +10,30 @@ import javax.persistence.Table;
 public class ActionModel {
 
 	@Id
-	public Long docid;
+	public String docid;
 	
-	@Column(name ="docStatus")
-	public Long docstatus;
+	@Column(name ="docstatus")
+	public String docstatus;
 	
-	@Column(name = "docFirstName")
+	@Column(name = "docfirstname")
 	public String docfirstname;
 	
-	@Column(name = "docSurrName")
+	@Column(name = "docsurrname")
 	public String docsurrname;
 
-	public Long getDocid() {
+	public String getDocid() {
 		return docid;
 	}
 
-	public void setDocid(Long docid) {
+	public void setDocid(String docid) {
 		this.docid = docid;
 	}
 
-	public Long getDocstatus() {
+	public String getDocstatus() {
 		return docstatus;
 	}
 
-	public void setDocstatus(Long docstatus) {
+	public void setDocstatus(String docstatus) {
 		this.docstatus = docstatus;
 	}
 
@@ -53,7 +53,7 @@ public class ActionModel {
 		this.docsurrname = docsurrname;
 	}
 
-	public ActionModel(Long docid, Long docstatus, String docfirstname, String docsurrname) {
+	public ActionModel(String docid, String docstatus, String docfirstname, String docsurrname) {
 		super();
 		this.docid = docid;
 		this.docstatus = docstatus;

@@ -19,14 +19,17 @@ public interface ActionRepository extends JpaRepository<ActionModel,Long> {
 	@Modifying
 	@Query(value = "\r\n"
 			+ "update projinz.docinfo\r\n"
-			+ "set docstatus = 1\r\n"
+			+ "set docstatus = 11\r\n"
 			+ "where docid = :docid" , nativeQuery = true)
 	public void setStatus1(@Param("docid") Long docid);
 	@Modifying
 	@Query(value = "\r\n"
 			+ "update projinz.docinfo\r\n"
-			+ "set docstatus = 0\r\n"
+			+ "set docstatus = 10\r\n"
 			+ "where docid = :docid" , nativeQuery = true)
 	public void setStatus0(@Param("docid") Long docid);
+	
+	@Query(value = "select docid,docstatus,docfirstname, docsurrname from projinz.docinfo" ,nativeQuery = true)
+	public List<ActionModel> getDoctor();
 
 }
