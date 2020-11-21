@@ -12,12 +12,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface  PatientRepository extends JpaRepository<Model,Long> {
+public interface  PatientRepository extends JpaRepository<PatientInfoModel,Long> {
 
 @Query(value ="select pesel,firstname,secondname,surrname,city,street,house_nbr from projinz.basicinformation b where pesel=:pesel and docid = :docid" , nativeQuery = true)
-public Model selectPatient(@Param("pesel") Long pesel,@Param("docid") Long docid);
+public PatientInfoModel selectPatient(@Param("pesel") Long pesel,@Param("docid") Long docid);
 
 @Query(value="select pesel,firstname,secondname,surrname,city,street,house_nbr,docid from projinz.basicinformation b where docid =:docid",nativeQuery=true)
-public List<Model> selectPatients(@Param("docid") Long docid);
+public List<PatientInfoModel> selectPatients(@Param("docid") Long docid);
 
 }

@@ -21,7 +21,7 @@ public class TreatControler {
 private	TreatService service;
 	
 	@GetMapping("/PatientTreatment")
-	public ResponseEntity<TreatResponse> getResponse(@RequestParam(required=true) Long pesel,@RequestParam(required=true) Long docId){
+	public ResponseEntity<List<TreatModel>> getResponse(@RequestParam(required=true) Long pesel,@RequestParam(required=true) Long docId){
 		if(pesel == null || docId == null) {
 			throw new BadRequestException("Parametr pesel/docId jest nie wpisany");
 		}
@@ -30,10 +30,10 @@ private	TreatService service;
 		if(model.isEmpty()) {
 			throw new NotFoundException("Brak pacjentów");
 		}
-		TreatResponse response = new TreatResponse(model);
-		response.setPatientTreatment(model);
 		
-		return new ResponseEntity<>(response,HttpStatus.OK);
+	
+		
+		return new ResponseEntity<>(model,HttpStatus.OK);
 		
 	}
 	

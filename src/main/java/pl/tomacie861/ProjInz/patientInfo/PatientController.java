@@ -25,7 +25,7 @@ private PatientService service;
 
 	
 	@GetMapping("/Patient")
- public	ResponseEntity<SinglePatientResponse> getResponse(@RequestParam(required=true) Long pesel,@RequestParam(required=true) Long docId){
+ public	ResponseEntity<PatientInfoModel> getResponse(@RequestParam(required=true) Long pesel,@RequestParam(required=true) Long docId){
 	
 		/**
 		 * Pobieranie pojedycznego pacjenta
@@ -33,29 +33,26 @@ private PatientService service;
 		if(pesel == null || docId == null) {
 			throw new BadRequestException("Brak numeru pesel/docId w żądaniu");
 		}
-		Model model = this.service.getPatient(pesel,docId);
+		PatientInfoModel model = this.service.getPatient(pesel,docId);
 		if(model == null) {
 			throw new NotFoundException("Brak pacjenta");
 		}
-		SinglePatientResponse response = new SinglePatientResponse(model);
-		response.setModel(model);
 		
-		return new ResponseEntity<>(response,HttpStatus.OK);
+		
+		return new ResponseEntity<>(model,HttpStatus.OK);
 	}
-	@GetMapping("/PatientsList")
-	public ResponseEntity<PatientsResponse> getPatientsList(@RequestParam(required=true) Long docId){
+	@GetMapping("/Patients")
+	public ResponseEntity<List<PatientInfoModel>> getPatientsList(@RequestParam(required=true) Long docId){
 		if(docId == null) {
 			throw new BadRequestException("Brak numeru pesel/docId w żądaniu");
 		}
-		List<Model> model = this.service.getPatients(docId);
+		List<PatientInfoModel> model = this.service.getPatients(docId);
 		if(model.isEmpty()) {
 			throw new NotFoundException("Brak pacjentów dla tego doktora");
 		}
-		PatientsResponse response = new PatientsResponse(model);
+
 		
-		response.setResponse(model);
-		
-		return new ResponseEntity<>(response,HttpStatus.OK);
+		return new ResponseEntity<>(model,HttpStatus.OK);
 	}
 	
 	

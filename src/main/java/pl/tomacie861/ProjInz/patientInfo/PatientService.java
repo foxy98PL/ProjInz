@@ -12,10 +12,10 @@ public class PatientService {
 	@Autowired
 	private PatientRepository repo;
 	
-	public Model getPatient(Long pesel,Long docid) {
+	public PatientInfoModel getPatient(Long pesel,Long docid) {
 		return repo.selectPatient(pesel,docid);
 	}
-	public List<Model> getPatients(Long docid){
+	public List<PatientInfoModel> getPatients(Long docid){
 		return repo.selectPatients(docid);
 	}
 }
