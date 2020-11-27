@@ -14,6 +14,6 @@ import pl.tomacie861.ProjInz.patientInfo.PatientInfoModel;
 public interface TreatRepository extends JpaRepository<TreatModel,Long> {
 	
 	
-	@Query(value = "select pesel,icddisease,icdnbr,icdsubtype,docid from projinz.patienticd10 p where pesel=:pesel and docid=:docid"  , nativeQuery = true)
+	@Query(value = "select id,pesel,icddisease,icdnbr,icdsubtype,docid from projinz.patienticd10 p where pesel=:pesel and docid=:docid"  , nativeQuery = true)
 	public List<TreatModel> selectPatientTreatment(@Param("pesel") Long pesel,@Param("docid") Long docid);
 }

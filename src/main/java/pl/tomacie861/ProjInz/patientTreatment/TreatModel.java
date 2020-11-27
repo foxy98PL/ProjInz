@@ -18,8 +18,10 @@ import com.sun.istack.NotNull;
 public class TreatModel {
 	
 	@Id
-	private String pesel;	
+	private String id;
 	
+	@Column(name="pesel")		
+	private String pesel;	
 	@Column(name="icddisease")
 	private String icddisease;
 	@Column(name="icdnbr")
@@ -28,6 +30,12 @@ public class TreatModel {
 	private String icdsubtype;
 	@Column(name="docid")
 	private Long docid;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getPesel() {
 		return pesel;
 	}
@@ -58,8 +66,9 @@ public class TreatModel {
 	public void setDocid(Long docid) {
 		this.docid = docid;
 	}
-	public TreatModel(String pesel, String icddisease, String icdnbr, String icdsubtype, Long docid) {
+	public TreatModel(String id, String pesel, String icddisease, String icdnbr, String icdsubtype, Long docid) {
 		super();
+		this.id = id;
 		this.pesel = pesel;
 		this.icddisease = icddisease;
 		this.icdnbr = icdnbr;
@@ -72,9 +81,10 @@ public class TreatModel {
 	}
 	@Override
 	public String toString() {
-		return "TreatModel [pesel=" + pesel + ", icddisease=" + icddisease + ", icdnbr=" + icdnbr + ", icdsubtype="
-				+ icdsubtype + ", docid=" + docid + "]";
+		return "TreatModel [id=" + id + ", pesel=" + pesel + ", icddisease=" + icddisease + ", icdnbr=" + icdnbr
+				+ ", icdsubtype=" + icdsubtype + ", docid=" + docid + "]";
 	}
+	
 	
 	
 }
