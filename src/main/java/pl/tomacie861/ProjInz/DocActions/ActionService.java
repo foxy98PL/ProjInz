@@ -20,8 +20,12 @@ public class ActionService {
 		repo.setStatus0(docid);
 	}
 	
-	public List<ActionModel> getDoctor() {
-	return repo.getDoctor();
+	public List<ActionModel> getDoctos() {
+	return repo.getDoctors();
+	}
+	
+	public ActionModel getDoctor(Long docid) {
+		return repo.getDoctor(docid);
 	}
 
 }

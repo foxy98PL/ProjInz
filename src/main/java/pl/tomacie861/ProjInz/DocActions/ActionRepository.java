@@ -30,6 +30,9 @@ public interface ActionRepository extends JpaRepository<ActionModel,Long> {
 	public void setStatus0(@Param("docid") Long docid);
 	
 	@Query(value = "select docid,docstatus,docfirstname, docsurrname from projinz.docinfo" ,nativeQuery = true)
-	public List<ActionModel> getDoctor();
+	public List<ActionModel> getDoctors();
+	
+	@Query(value = "select docid,docstatus,docfirstname, docsurrname from projinz.docinfo where docid = :docid" ,nativeQuery = true)
+	public ActionModel getDoctor(@Param("docid") Long docid);
 
 }

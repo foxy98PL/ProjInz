@@ -39,11 +39,11 @@ public class ActionControler {
 	this.service.setStatus0(docId);
 	
 	}
-	@GetMapping("/doctor")
-	public ResponseEntity<List<ActionModel>> getDoctor(){
+	@GetMapping("/doctors")
+	public ResponseEntity<List<ActionModel>> getDoctors(){
 		
 		
-		List<ActionModel> model = this.service.getDoctor();
+		List<ActionModel> model = this.service.getDoctos();
 		
 		if(model == null) {
 			throw new NotFoundException("Brak doktora w bazie danych");
@@ -54,4 +54,19 @@ public class ActionControler {
 		
 		
 	}
+	@GetMapping("/doctor")
+	public ResponseEntity<response> getDoctor(@RequestParam()Long docId){
+		
+		ActionModel model = this.service.getDoctor(docId);
+		response response = new response();
+		String status = model.getDocstatus();
+		response.setStatus(status);
+		
+		return new ResponseEntity<>(response,HttpStatus.OK);
+		
+		
+		
+	}
+	
+	
 }
